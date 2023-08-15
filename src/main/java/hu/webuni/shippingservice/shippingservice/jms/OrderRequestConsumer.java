@@ -34,6 +34,12 @@ public class OrderRequestConsumer {
         orderResponse.setOrderStatus(orderStatus);
         String shippingId = UUID.randomUUID().toString();
         orderResponse.setShippingId(shippingId);
+        //TODO: implementalni, hogy azonnal kuldjon shipmentId, es ez a metodus kesobb a szallitas eredmenyet jms-sel
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         jmsTemplate.convertAndSend(
                 (Topic)request.getHeaders().get(JmsHeaders.REPLY_TO),
