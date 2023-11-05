@@ -41,8 +41,6 @@ public class OrderRequestConsumer {
             throw new RuntimeException(e);
         }
 
-        jmsTemplate.convertAndSend(
-                (Topic)request.getHeaders().get(JmsHeaders.REPLY_TO),
-                orderResponse);
+        jmsTemplate.convertAndSend((Topic)request.getHeaders().get(JmsHeaders.REPLY_TO), orderResponse);
     }
 }
